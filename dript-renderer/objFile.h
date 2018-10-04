@@ -23,6 +23,7 @@ struct ObjFile
 	ObjFile(string p);
 
 	// methods
+private:
 	void importPolygons();
 
 };
@@ -32,6 +33,7 @@ ObjFile::ObjFile(string p) :path(p), ifs(ifstream(path)) {
 		cout << "!!! File import failed !!!" << endl;
 		return;
 	}
+	importPolygons();
 }
 
 void ObjFile::importPolygons()
@@ -40,8 +42,15 @@ void ObjFile::importPolygons()
 	regex face_exp("f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)");
 
 	string text;
-
 	while (getline(ifs, text)) {
-		// TODO: code of import polygon data.
+		smatch m;
+		regex_search(text, m, vertex_exp);
+		if (m.str() != "") {
+			vertices.push_back(Vec(
+				stoi(m[1].str()),
+				stoi(m[2].str()),
+				stoi(m[3].str())
+			));
+		}
 	}
 }
