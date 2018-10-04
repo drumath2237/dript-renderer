@@ -26,11 +26,8 @@
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\dript.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript\ray.h">
-      <Filter>リソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript\vec.h">
-      <Filter>リソース ファイル</Filter>
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\vec.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

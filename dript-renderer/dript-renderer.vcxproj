@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -120,8 +123,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\dript.h" />
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\objFile.h" />
-    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript\ray.h" />
-    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript\vec.h" />
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
