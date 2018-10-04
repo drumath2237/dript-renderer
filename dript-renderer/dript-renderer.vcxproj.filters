@@ -29,5 +29,8 @@
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\vec.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\polygon.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
