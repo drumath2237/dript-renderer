@@ -115,6 +115,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\app.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\dript.h" />
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\objFile.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
