@@ -39,7 +39,9 @@ ObjFile::ObjFile(string p) :path(p), ifs(ifstream(path)) {
 void ObjFile::importPolygons()
 {
 	regex vertex_exp("v (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
+	regex normal_exp("vn (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
 	regex face_exp("f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)");
+	regex face_analysis_exp("(\\d*)/(\\d*)/(\\d*)");
 
 	string text;
 	while (getline(ifs, text)) {
@@ -47,6 +49,15 @@ void ObjFile::importPolygons()
 		regex_search(text, m, vertex_exp);
 		if (m.str() != "") {
 			vertices.push_back(Vec(
+				stoi(m[1].str()),
+				stoi(m[2].str()),
+				stoi(m[3].str())
+			));
+		}
+
+		regex_search(text, m, normal_exp);
+		if (m.str() != "") {
+			normals.push_back(Vec(
 				stoi(m[1].str()),
 				stoi(m[2].str()),
 				stoi(m[3].str())
