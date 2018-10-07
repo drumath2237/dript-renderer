@@ -64,4 +64,15 @@ void ObjFile::importPolygons()
 			));
 		}
 	}
+
+	while (getline(ifs, text))
+	{
+		smatch m;
+		regex_search(text, m, face_exp);
+		if (m.str() != "") {
+			for (int i = 1; i <= 3; i++) {
+				string tmp = m[i].str();
+			}
+		}
+	}
 }
