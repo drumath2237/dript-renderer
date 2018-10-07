@@ -65,14 +65,31 @@ void ObjFile::importPolygons()
 		}
 	}
 
+	ifs.close();
+	ifs = ifstream(path);
 	while (getline(ifs, text))
 	{
 		smatch m;
-		regex_search(text, m, face_exp);
-		if (m.str() != "") {
-			for (int i = 1; i <= 3; i++) {
-				string tmp = m[i].str();
+		regex_search(text, m, face_exp); // m->f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)
+
+		if (!m.empty()) {
+			int index[3]; // polygon3‚Ì3‚Â‚Ìƒ|ƒŠƒSƒ“‚ğQÆ‚·‚é‚½‚ß‚Ì“Y‚¦š
+
+			for (int i = 0; i < 3; i++) {
+				smatch m_tmp;
+				string str_tmp;
+				str_tmp = m[i+1].str();
+				regex_search(str_tmp, m_tmp, face_analysis_exp);
+				index[i] = stoi(m_tmp[1].str());
 			}
+
+			polys.push_back(Polygon3(
+				vertices[index[0]],
+				vertices[index[1]],
+				vertices[index[2]]
+			));
+
 		}
+
 	}
 }

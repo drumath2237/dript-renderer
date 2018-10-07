@@ -5,6 +5,7 @@ struct Polygon3
 {
 	// members
 	Vec a, b, c;
+	Vec normal;
 
 	// constructor
 	Polygon3(Vec v):a(v),b(v),c(v){}
