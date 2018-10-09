@@ -121,13 +121,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\app.cpp" />
+    <ClCompile Include="..\..\..\programs\dript-renderer\dript-renderer\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\dript.h" />
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\objFile.h" />
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\polygon.h" />
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\vec.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\dript.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\objFile.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\polygon.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

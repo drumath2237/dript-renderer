@@ -15,21 +15,21 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\app.cpp">
+    <ClCompile Include="..\..\..\programs\dript-renderer\dript-renderer\app.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\objFile.h">
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\objFile.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\dript.h">
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\dript.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\vec.h">
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\vec.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\kaitoFolder\programs\dript-renderer\dript-renderer\polygon.h">
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\polygon.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
