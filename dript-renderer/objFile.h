@@ -25,7 +25,9 @@ struct ObjFile
 	// methods
 private:
 	void importPolygons();
-	Polygon3 makePolygonFromFace(string);
+
+public:
+	Polygon3 makePolygonFromFace(smatch);
 
 };
 
@@ -95,10 +97,19 @@ void ObjFile::importPolygons()
 	}
 }
 
-Polygon3 ObjFile::makePolygonFromFace(string text_face)
+Polygon3 ObjFile::makePolygonFromFace(smatch m)
 {
 	// f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)の文字列から
 	// Polygon3クラスを生成する
 	// 言わずもがな頂点がすべて追加し終わったことを前提とする
+
+	regex re("(\\d*)/(\\d*)/(\\d*)");
+	string faces[3] = {
+		m[1].str(),
+		m[2].str(),
+		m[3].str()
+	};
+
+
 	return Polygon3(Vec(0));
 }
