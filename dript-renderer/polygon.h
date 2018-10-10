@@ -1,6 +1,8 @@
 #pragma once
 #include "vec.h"
 
+#include <iostream>
+
 struct Polygon3
 {
 	// members

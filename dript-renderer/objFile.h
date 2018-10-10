@@ -25,8 +25,6 @@ struct ObjFile
 	// methods
 private:
 	void importPolygons();
-
-public:
 	Polygon3 makePolygonFromFace(smatch);
 
 };
@@ -44,7 +42,6 @@ void ObjFile::importPolygons()
 	regex vertex_exp("v (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
 	regex normal_exp("vn (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
 	regex face_exp("f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)");
-	regex face_analysis_exp("(\\d*)/(\\d*)/(\\d*)");
 
 	string text;
 	while (getline(ifs, text)) {
@@ -73,25 +70,9 @@ void ObjFile::importPolygons()
 	while (getline(ifs, text))
 	{
 		smatch m;
-		regex_search(text, m, face_exp); // m->f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)
-
+		regex_search(text, m, face_exp);
 		if (!m.empty()) {
-			int index[3]; // polygon3の3つのポリゴンを参照するための添え字
-
-			for (int i = 0; i < 3; i++) {
-				smatch m_tmp;
-				string str_tmp;
-				str_tmp = m[i+1].str();
-				regex_search(str_tmp, m_tmp, face_analysis_exp);
-				index[i] = stoi(m_tmp[1].str());
-			}
-
-			polys.push_back(Polygon3(
-				vertices[index[0]],
-				vertices[index[1]],
-				vertices[index[2]]
-			));
-
+			polys.push_back(makePolygonFromFace(m));
 		}
 
 	}
@@ -99,10 +80,6 @@ void ObjFile::importPolygons()
 
 Polygon3 ObjFile::makePolygonFromFace(smatch m)
 {
-	// f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)の文字列から
-	// Polygon3クラスを生成する
-	// 言わずもがな頂点がすべて追加し終わったことを前提とする
-
 	regex re("(\\d*)/(\\d*)/(\\d*)");
 	smatch matches[3];
 
@@ -123,7 +100,6 @@ Polygon3 ObjFile::makePolygonFromFace(smatch m)
 		vertices[index[1] - 1],
 		vertices[index[2] - 1]
 	);
-
 
 	return result;
 }

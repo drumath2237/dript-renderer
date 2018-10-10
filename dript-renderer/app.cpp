@@ -7,7 +7,7 @@ using namespace std;
 
 int main()
 {
-	ObjFile f("D:/kaitoFolder/blender/cube.obj");
+	ObjFile f("D:/kaito's file/metasequoia/cube.obj");
 	for (auto v : f.normals) {
 		cout << "(" << v.x << ", " << v.y << ", " << v.z << ")" << endl;
 	}
