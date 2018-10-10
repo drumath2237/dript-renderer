@@ -104,12 +104,26 @@ Polygon3 ObjFile::makePolygonFromFace(smatch m)
 	// Œ¾‚í‚¸‚à‚ª‚È’¸“_‚ª‚·‚×‚Ä’Ç‰Á‚µI‚í‚Á‚½‚±‚Æ‚ğ‘O’ñ‚Æ‚·‚é
 
 	regex re("(\\d*)/(\\d*)/(\\d*)");
+	smatch matches[3];
+
 	string faces[3] = {
 		m[1].str(),
 		m[2].str(),
 		m[3].str()
 	};
 
+	int index[3];
+	for (auto i = 0; i < 3; i++) {
+		regex_search(faces[i], matches[i], re);
+		index[i] = stoi(matches[i][1].str());
+	}
 
-	return Polygon3(Vec(0));
+	Polygon3 result = Polygon3(
+		vertices[index[0] - 1],
+		vertices[index[1] - 1],
+		vertices[index[2] - 1]
+	);
+
+
+	return result;
 }
