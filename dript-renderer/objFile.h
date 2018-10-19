@@ -39,13 +39,17 @@ ObjFile::ObjFile(string p) :path(p), ifs(ifstream(path)) {
 
 void ObjFile::importPolygons()
 {
+	// 正規表現s
 	regex vertex_exp("v (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
 	regex normal_exp("vn (-?\\d+\\.\\d+) (-?\\d+\\.\\d+) (-?\\d+\\.\\d+)");
 	regex face_exp("f (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*) (\\d*/\\d*/\\d*)");
 
-	string text;
+	string text; // ファイルから入力される一行分の文字列
 	while (getline(ifs, text)) {
-		smatch m;
+
+		smatch m; // 正規表現マッチャー。
+
+		// 頂点文字列の取得→頂点の登録
 		regex_search(text, m, vertex_exp);
 		if (m.str() != "") {
 			vertices.push_back(Vec(
@@ -55,6 +59,7 @@ void ObjFile::importPolygons()
 			));
 		}
 
+		// 法線ベクトルの取得→登録
 		regex_search(text, m, normal_exp);
 		if (m.str() != "") {
 			normals.push_back(Vec(
@@ -63,13 +68,17 @@ void ObjFile::importPolygons()
 				stoi(m[3].str())
 			));
 		}
+
 	}
 
-	ifs.close();
+	ifs.close(); // ポリゴンの取得のために、いったんファイルを閉じる
+
 	ifs = ifstream(path);
+
+	// 面情報の取得
 	while (getline(ifs, text))
 	{
-		smatch m;
+		smatch m; //正規表現マッチャー。これをmakePolygonFromFace
 		regex_search(text, m, face_exp);
 		if (!m.empty()) {
 			polys.push_back(makePolygonFromFace(m));
