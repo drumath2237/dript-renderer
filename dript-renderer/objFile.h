@@ -78,37 +78,51 @@ void ObjFile::importPolygons()
 	// 面情報の取得
 	while (getline(ifs, text))
 	{
-		smatch m; //正規表現マッチャー。これをmakePolygonFromFace
+		// 正規表現マッチャー。これをmakePolygonFromFaceに渡すことで
+		// マッチしたことが保証されると同時に
+		// マッチした文字列操作が楽になる
+		smatch m;
 		regex_search(text, m, face_exp);
 		if (!m.empty()) {
 			polys.push_back(makePolygonFromFace(m));
 		}
 
 	}
+
 }
 
 Polygon3 ObjFile::makePolygonFromFace(smatch m)
 {
-	regex re("(\\d*)/(\\d*)/(\\d*)");
-	smatch matches[3];
+	regex re("(\\d*)/(\\d*)/(\\d*)"); // 頂点・テクスチャ座標・法線ベクトルのインデックスを取得する正規表現
+	smatch matches[3]; // 正規表現からのデータを取得するためのマッチャー
 
+	// 要素は /(\d*)/(\d*)/(\d*)/ の正規表現に絶対マッチする。
+	// なぜfaceという名前にしたのかわからんけど
 	string faces[3] = {
 		m[1].str(),
 		m[2].str(),
 		m[3].str()
 	};
 
-	int index[3];
+	int index[3]; // 取得した頂点のインデックスを格納する配列
 	for (auto i = 0; i < 3; i++) {
 		regex_search(faces[i], matches[i], re);
+
+		// reの一番最初のマッチ部分だけを後方参照すると頂点のインデックスだけとれる
+		// それを文字列to数値してる
 		index[i] = stoi(matches[i][1].str());
 	}
 
+	// .objのインデックスは1からなので-1して0から始めるようにする
 	Polygon3 result = Polygon3(
 		vertices[index[0] - 1],
 		vertices[index[1] - 1],
 		vertices[index[2] - 1]
 	);
+
+	// 法線情報の取得
+	// matchesはどれでもいい(おんなじだから)
+	result.normal = normals[stoi(matches[0][3]) - 1];
 
 	return result;
 }
