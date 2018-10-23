@@ -61,8 +61,5 @@ int main()
 	rtcReleaseScene(scene);
 	rtcReleaseDevice(device);
 
-	char n;
-	cin >> n;
-
 	return 0;
 }
