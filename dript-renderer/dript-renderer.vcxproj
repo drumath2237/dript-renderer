@@ -128,7 +128,7 @@
     <ClCompile Include="..\..\..\programs\dript-renderer\dript-renderer\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\image.h" />
+    <ClInclude Include="..\..\..\\programs\dript-renderer\dript-renderer\image.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\dript.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\objFile.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\polygon.h" />
