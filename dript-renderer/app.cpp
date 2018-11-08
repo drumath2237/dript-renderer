@@ -2,9 +2,27 @@
 #include <embree3/rtcore.h>
 #include <embree3/rtcore_ray.h>
 
+#include "image.h"
+
 using namespace std;
 
 int main()
+{
+	PPM ppm;
+	vector<Vec> color;
+
+	for (int i = 0; i < ppm.width; i++) {
+		for (int j = 0; j < ppm.height; j++) {
+			color.push_back(Vec(255, 0, 0));
+		}
+	}
+
+	ppm.out(color);
+
+	return 0;
+}
+
+int emb()
 {
 	cout << "start project" << endl;
 
