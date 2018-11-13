@@ -41,36 +41,39 @@ int main()
 	rtcInitIntersectContext(&context);
 
 	RTCRayHit ray;
+	double orgx = -1.;
+	double orgy = -1.;
 
-	ray.ray.org_x = -0.5;
-	ray.ray.org_y = 0.5;
-	ray.ray.org_z = 2.0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 10; j++) {
+			cout << orgx << endl;
+			ray.ray.org_x = orgx;
+			ray.ray.org_y = orgy;
+			ray.ray.org_z = 2.0;
 
-	ray.ray.dir_x = 0.0;
-	ray.ray.dir_y = 0.0;
-	ray.ray.dir_z = -1.0;
+			ray.ray.dir_x = 0.0;
+			ray.ray.dir_y = 0.0;
+			ray.ray.dir_z = -1.0;
 
-	ray.ray.tnear = 0.0f;
-	ray.ray.tfar = INFINITY;
-	ray.ray.time = 0.0;
+			ray.ray.tnear = 0.0f;
+			ray.ray.tfar = INFINITY;
+			ray.ray.time = 0.0;
 
-	rtcIntersect1(scene, &context, &ray);
-	cout << ray.hit.geomID << endl;
+			rtcIntersect1(scene, &context, &ray);
 
-	Vec v = Vec(
-		ray.hit.Ng_x,
-		ray.hit.Ng_y,
-		ray.hit.Ng_z
-	);
-	showVec(normalize(v));
+			if (ray.hit.geomID == MY_INVALID_GEOM_ID)
+			{
+				cout << "invalid intersection" << " ";
+			}
+			else {
+				cout << "intersected" << " ";
+			}
 
-	if (ray.hit.geomID == MY_INVALID_GEOM_ID)
-	{
-		cout << "invalid intersection" << endl;
+			orgx += (1.0 - (-1.0)) / 10.;
+			orgy += (1. - (-1.)) / 10.;
+		}
 	}
-	else {
-		cout << "intersected" << endl;
-	}
+
 
 	/*  Release process */
 	rtcReleaseScene(scene);
