@@ -3,6 +3,8 @@
 
 #include<iostream>
 
+using namespace std;
+
 struct Vec {
 	double x;
 	double y;
@@ -60,6 +62,15 @@ Vec cross(Vec a, Vec b)
 		a.z*b.x - a.x*b.z,
 		a.x*b.y - a.y*b.x
 	);
+}
+
+void showVec(Vec v)
+{
+	cout << "("
+		<< v.x << ", "
+		<< v.y << ", "
+		<< v.z
+		<< ")" << endl;
 }
 
 

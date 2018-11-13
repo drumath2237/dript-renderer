@@ -4,15 +4,11 @@
 
 #include "image.h"
 
+#define MY_INVALID_GEOM_ID 3435973836
+
 using namespace std;
 
 int main()
-{
-
-	return 0;
-}
-
-int emb()
 {
 	cout << "start project" << endl;
 
@@ -31,33 +27,44 @@ int emb()
 	vertices[3].x = -1; vertices[3].y = -1; vertices[3].z = 0;
 
 	int tri = 0;
-	Triangle* triangles = (Triangle*)rtcSetNewGeometryBuffer(mesh, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, sizeof(Triangle), 2);
-	triangles[tri].v0 = 0; triangles[tri].v1 = 1; triangles[tri].v2 = 3; tri++; // ŽOŠpŒ`ABD
-	triangles[tri].v0 = 1; triangles[tri].v1 = 2; triangles[tri].v2 = 3; tri++; // ŽOŠpŒ`BCD
+	Triangle* triangles = (Triangle*)rtcSetNewGeometryBuffer(mesh, RTC_BUFFER_TYPE_INDEX, 0, RTC_FORMAT_UINT3, sizeof(Triangle), 1);
+	triangles[tri].v0 = 0; triangles[tri].v1 = 1; triangles[tri].v2 = 2; tri++;
+	//triangles[tri].v0 = 1; triangles[tri].v1 = 2; triangles[tri].v2 = 3; tri++;
 
-	unsigned int geomID = rtcAttachGeometry(scene, mesh);
+	rtcCommitGeometry(mesh);
+
+	unsigned int geomID = rtcAttachGeometry(scene, mesh); // attatch geometry(mesh) to scene.
+
+	rtcCommitScene(scene);
 
 	RTCIntersectContext context;
 	rtcInitIntersectContext(&context);
-	RTCHit rtchit;
-	rtchit.geomID = geomID;
-
-	RTCRay rtcray;
-	rtcray.org_x = 0.0;
-	rtcray.org_y = 0.0;
-	rtcray.org_z = 2.0;
-
-	rtcray.dir_x = 0.0;
-	rtcray.dir_y = 0.0;
-	rtcray.dir_z = -1.0;
-
-	rtcray.tnear = 0.0f;
-	rtcray.tfar = INFINITY;
-	rtcray.time = 0.0;
 
 	RTCRayHit ray;
+
+	ray.ray.org_x = -0.5;
+	ray.ray.org_y = 0.5;
+	ray.ray.org_z = 2.0;
+
+	ray.ray.dir_x = 0.0;
+	ray.ray.dir_y = 0.0;
+	ray.ray.dir_z = -1.0;
+
+	ray.ray.tnear = 0.0f;
+	ray.ray.tfar = INFINITY;
+	ray.ray.time = 0.0;
+
 	rtcIntersect1(scene, &context, &ray);
-	if (rtchit.geomID == RTC_INVALID_GEOMETRY_ID)
+	cout << ray.hit.geomID << endl;
+
+	Vec v = Vec(
+		ray.hit.Ng_x,
+		ray.hit.Ng_y,
+		ray.hit.Ng_z
+	);
+	showVec(normalize(v));
+
+	if (ray.hit.geomID == MY_INVALID_GEOM_ID)
 	{
 		cout << "invalid intersection" << endl;
 	}
