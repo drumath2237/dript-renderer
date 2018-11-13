@@ -3,6 +3,7 @@
 #include <embree3/rtcore_ray.h>
 
 #include "image.h"
+#include <vector>
 
 #define MY_INVALID_GEOM_ID 3435973836
 
@@ -21,9 +22,9 @@ int main()
 	RTCGeometry mesh = rtcNewGeometry(device, RTC_GEOMETRY_TYPE_TRIANGLE);
 
 	Vertex* vertices = (Vertex*)rtcSetNewGeometryBuffer(mesh, RTC_BUFFER_TYPE_VERTEX, 0, RTC_FORMAT_FLOAT3, sizeof(Vertex), 4);
-	vertices[0].x = 1; vertices[0].y = 1; vertices[0].z = 0;
-	vertices[1].x = 1; vertices[1].y = -1; vertices[1].z = 0;
-	vertices[2].x = -1; vertices[2].y = 1; vertices[2].z = 0;
+	vertices[0].x = 0.5; vertices[0].y = 0.5; vertices[0].z = 0;
+	vertices[1].x = .5; vertices[1].y = -.5; vertices[1].z = 0;
+	vertices[2].x = -.5; vertices[2].y = .5; vertices[2].z = 0;
 	vertices[3].x = -1; vertices[3].y = -1; vertices[3].z = 0;
 
 	int tri = 0;
@@ -44,36 +45,40 @@ int main()
 	double orgx = -1.;
 	double orgy = -1.;
 
-	for (int i = 0; i < 10; i++) {
-		for (int j = 0; j < 10; j++) {
-			cout << orgx << endl;
+	ray.ray.dir_x = 0.0;
+	ray.ray.dir_y = 0.0;
+	ray.ray.dir_z = -1.0;
+
+	ray.ray.tnear = 0.0f;
+	ray.ray.tfar = INFINITY;
+	ray.ray.time = 0.0;
+
+	int width = 100;
+	int height = 100;
+	PPM image = PPM(width, height);
+	vector<Vec> colors;
+
+	for (int i = 0; i < height; i++) {
+		for (int j = 0; j < width; j++) {
 			ray.ray.org_x = orgx;
 			ray.ray.org_y = orgy;
 			ray.ray.org_z = 2.0;
-
-			ray.ray.dir_x = 0.0;
-			ray.ray.dir_y = 0.0;
-			ray.ray.dir_z = -1.0;
-
-			ray.ray.tnear = 0.0f;
-			ray.ray.tfar = INFINITY;
-			ray.ray.time = 0.0;
 
 			rtcIntersect1(scene, &context, &ray);
 
 			if (ray.hit.geomID == MY_INVALID_GEOM_ID)
 			{
-				cout << "invalid intersection" << " ";
+				colors.push_back(Vec(0,0,0));
 			}
 			else {
-				cout << "intersected" << " ";
+				colors.push_back(Vec(255, 0, 0));
 			}
 
-			orgx += (1.0 - (-1.0)) / 10.;
-			orgy += (1. - (-1.)) / 10.;
+			orgx += (1. - (-1.)) / (double)width;
+			orgy += (1. - (-1.)) / (double)height;
 		}
 	}
-
+	image.out(colors);
 
 	/*  Release process */
 	rtcReleaseScene(scene);
