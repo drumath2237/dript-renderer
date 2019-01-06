@@ -93,7 +93,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>C:\embree\embree-3.1.0.x64.windows\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>embree3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,10 +128,12 @@
     <ClCompile Include="..\..\..\programs\dript-renderer\dript-renderer\app.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\\programs\dript-renderer\dript-renderer\image.h" />
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\hit.h" />
+    <ClInclude Include="ray.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\triangle.h" />
+    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\image.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\dript.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\objFile.h" />
-    <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\polygon.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\vec.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

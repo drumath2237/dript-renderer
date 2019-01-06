@@ -16,22 +16,13 @@ struct PPM
 	int max_color = 255;
 	string file_path = "./result.ppm";
 
-	PPM() {};
 	PPM(int w, int h):width(w),height(h){}
 
 	int size() { return width * height; }
-	bool out(vector<Vec>);
-	bool ppm_out(PPM, vector<Vec>);
 };
 
-bool PPM::out(vector<Vec> colors)
-{
-	if (size() != colors.size()) return false;
-	ppm_out(*this, colors);
-	return true;
-}
 
-bool PPM::ppm_out(PPM ppm, vector<Vec> colors)
+bool ppm_out(PPM ppm, vector<Vec> colors)
 {
 	if (ppm.size() != colors.size()) return false;
 
