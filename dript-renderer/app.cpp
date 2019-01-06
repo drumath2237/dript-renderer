@@ -28,8 +28,8 @@ int main()
 		int w = i % height;
 		int h = i / height;
 
-		double x = (double)w / 400. - 1.;
-		double y = (double)h / 400. - 1.;
+		double x = (double)w / ((double)ppm.width / 2.) - 1.;
+		double y = (double)h / ((double)ppm.height / 2.) - 1.;
 
 		ray.o = Vec(x, y, 5);
 		ray.d = Vec(0, 0, -1);
