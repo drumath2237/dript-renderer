@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\hit.h" />
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\intersect.h" />
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\scene.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\triangle.h" />
     <ClInclude Include="..\..\..\programs\dript-renderer\dript-renderer\image.h" />
