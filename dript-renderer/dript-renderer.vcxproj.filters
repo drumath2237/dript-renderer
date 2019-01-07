@@ -41,5 +41,8 @@
     <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\hit.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\kaito%27s file\programs\dript-renderer\dript-renderer\intersect.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
