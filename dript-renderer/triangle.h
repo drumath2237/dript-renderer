@@ -10,6 +10,6 @@ struct Triangle
 
 	Triangle() {};
 	Triangle(Vec v0, Vec v1, Vec v2) : v0(v0), v1(v1), v2(v2) {};
-	Triangle(Vec v0, Vec v1, Vec v2, Vec normal_) : v0(v0), v1(v1), v2(v2), normal(normal_) {};
+	Triangle(Vec v0, Vec v1, Vec v2, Vec normal_) : v0(v0), v1(v1), v2(v2), normal(normalize(normal_)) {};
 };
 
