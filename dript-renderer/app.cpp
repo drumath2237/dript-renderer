@@ -7,10 +7,18 @@
 #include "vec.h"
 #include "intersect.h"
 #include "scene.h"
+#include "objFile.h"
 
 using namespace std;
 
 int main()
+{
+	ObjFile obj("./cube.obj");
+
+	return 0;
+}
+
+int testfun()
 {
 	int width = 800;
 	int height = 800;
@@ -54,5 +62,7 @@ int main()
 	}
 
 	ppm_out(ppm, Color);
+
+	return 0;
 
 }

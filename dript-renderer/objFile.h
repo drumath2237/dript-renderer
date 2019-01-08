@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 
-#include "polygon.h"
+#include "triangle.h"
 #include "vec.h"
 
 using namespace std;
@@ -13,11 +13,11 @@ using namespace std;
 struct ObjFile
 {
 	//members
-	string path;
-	ifstream ifs;
-	vector<Vec> vertices;
-	vector<Polygon3> polys;
-	vector<Vec> normals;
+	string path; // ファイルパス
+	ifstream ifs; // ファイルストリーム
+	vector<Vec> vertices; // 頂点ベクトル
+	vector<Triangle> polys; // 三角面ポリゴン
+	vector<Vec> normals; // 法線ベクトル
 	
 	// constructor
 	ObjFile(string p);
@@ -25,7 +25,7 @@ struct ObjFile
 	// methods
 private:
 	void importPolygons();
-	Polygon3 makePolygonFromFace(smatch);
+	Triangle makePolygonFromFace(smatch);
 
 };
 
@@ -91,7 +91,7 @@ void ObjFile::importPolygons()
 
 }
 
-Polygon3 ObjFile::makePolygonFromFace(smatch m)
+Triangle ObjFile::makePolygonFromFace(smatch m)
 {
 	regex re("(\\d*)/(\\d*)/(\\d*)"); // 頂点・テクスチャ座標・法線ベクトルのインデックスを取得する正規表現
 	smatch matches[3]; // 正規表現からのデータを取得するためのマッチャー
@@ -114,7 +114,7 @@ Polygon3 ObjFile::makePolygonFromFace(smatch m)
 	}
 
 	// .objのインデックスは1からなので-1して0から始めるようにする
-	Polygon3 result = Polygon3(
+	Triangle result = Triangle(
 		vertices[index[0] - 1],
 		vertices[index[1] - 1],
 		vertices[index[2] - 1]
