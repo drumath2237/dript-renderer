@@ -53,9 +53,9 @@ void ObjFile::importPolygons()
 		regex_search(text, m, vertex_exp);
 		if (m.str() != "") {
 			vertices.push_back(Vec(
-				stoi(m[1].str()),
-				stoi(m[2].str()),
-				stoi(m[3].str())
+				stod(m[1].str()),
+				stod(m[2].str()),
+				stod(m[3].str())
 			));
 		}
 
@@ -63,9 +63,9 @@ void ObjFile::importPolygons()
 		regex_search(text, m, normal_exp);
 		if (m.str() != "") {
 			normals.push_back(Vec(
-				stoi(m[1].str()),
-				stoi(m[2].str()),
-				stoi(m[3].str())
+				stod(m[1].str()),
+				stod(m[2].str()),
+				stod(m[3].str())
 			));
 		}
 

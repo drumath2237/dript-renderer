@@ -13,29 +13,19 @@ using namespace std;
 
 int main()
 {
-	ObjFile obj("./cube.obj");
+	cout << "rendering started!" << endl;
 
-	return 0;
-}
-
-int testfun()
-{
-	int width = 800;
-	int height = 800;
+	int width = 400;
+	int height = 400;
 	PPM ppm = PPM(width, height);
 
-	Triangle tri1, tri2;
-	tri1.v0 = Vec();
-	tri1.v1 = Vec(0, 0.5, 0);
-	tri1.v2 = Vec(0.5, 0, 0);
-
-	tri2.v0 = Vec(-0.47, 0.61, 0);
-	tri2.v1 = Vec(-.75, -.19, 0);
-	tri2.v2 = Vec(-.33, 0.24, 0);
+	ObjFile obj("./cube.obj");
 
 	Scene scene;
-	scene.polygons.push_back(tri1);
-	scene.polygons.push_back(tri2);
+
+	for (auto poly : obj.polys) {
+		scene.polygons.push_back(poly);
+	}
 
 	vector<Vec> Color = vector<Vec>();
 
