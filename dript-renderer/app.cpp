@@ -17,8 +17,8 @@ int main()
 {
 	cout << "rendering started!" << endl;
 
-	int width = 800;
-	int height = 800;
+	int width = 100;
+	int height = 100;
 
 	PPM ppm = PPM(width, height);
 
@@ -57,8 +57,9 @@ int main()
 			Color.push_back(Vec(255, 0, 255));
 		}
 		else {
-			Color.push_back(Vec());
+			Color.push_back(Vec(255,255,255));
 		}
+		//Color.push_back(scene.radiance(ray));
 	}
 
 	ppm_out(ppm, Color);

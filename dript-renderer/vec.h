@@ -64,6 +64,12 @@ Vec cross(Vec a, Vec b)
 	);
 }
 
+
+Vec multiply(Vec a, Vec b)
+{
+	return Vec(a.x*b.x, a.y*b.y, a.z*b.z);
+}
+
 void showVec(Vec v)
 {
 	cout << "("
