@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include <vector>
+#include <omp.h>
 
 #include "ray.h"
 #include "image.h"
@@ -8,6 +9,7 @@
 #include "intersect.h"
 #include "scene.h"
 #include "objFile.h"
+#include "light.h"
 
 using namespace std;
 
@@ -15,8 +17,9 @@ int main()
 {
 	cout << "rendering started!" << endl;
 
-	int width = 400;
-	int height = 400;
+	int width = 800;
+	int height = 800;
+
 	PPM ppm = PPM(width, height);
 
 	ObjFile obj("./cube.obj");
@@ -27,10 +30,17 @@ int main()
 		scene.polygons.push_back(poly);
 	}
 
+	Light light = Light();
+	light.color = Vec(255, 255, 255);
+	light.pos = Vec(0, 0, 1.0);
+
+	scene.light = light;
+
 	vector<Vec> Color = vector<Vec>();
 
 	Ray ray;
 
+	#pragma omp parallel
 	for (int i = 0; i < width*height; i++)
 	{
 		int w = i % height;
@@ -44,9 +54,6 @@ int main()
 
 		Hit hit = scene.intersect(ray, 0.001, 100);
 		if (hit.isHit) {
-			//Vec col = normalize(hit.poly->normal);
-			//Vec newcol = Vec(abs(col.x), abs(col.y), abs(col.z));
-			//Color.push_back(newcol*255);
 			Color.push_back(Vec(255, 0, 255));
 		}
 		else {

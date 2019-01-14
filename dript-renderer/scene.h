@@ -7,11 +7,13 @@
 #include "hit.h"
 #include "intersect.h"
 #include "ray.h"
+#include "light.h"
 
 
 struct Scene
 {
 	vector<Triangle> polygons;
+	Light light;
 
 	Hit intersect(Ray ray, double tmin, double tmax) {
 		Hit rayhit;
